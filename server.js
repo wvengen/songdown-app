@@ -70,9 +70,9 @@ var toApp = function(req, res, next) {
 };
 
 app.get('/edit', toApp);
-app.get('/edit/:artist/:name', toApp);
+app.get('/edit/:name', toApp);
 app.get('/song', toApp);
-app.get('/song/:artist/:name', toApp);
+app.get('/song/:name', toApp);
 app.get('/404', toApp);
 
 app.get('/', function(req, res) {

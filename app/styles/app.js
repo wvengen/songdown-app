@@ -12,6 +12,9 @@ var app = {
   overflow: 'auto',
   margin: '0 0',
 
+  // don't hide content below fixed navbar
+  paddingTop: '50px',
+
   '@media print': {
     backgroundColor: '#ffffff',
     padding: 0,

@@ -4,9 +4,6 @@ var React = require('react');
 
 var SongActions = require('./../actions/song');
 
-var Box = require('./box');
-var Collection = require('./collection');
-
 var Index = React.createClass({
 
   componentDidMount: function() {
@@ -16,13 +13,7 @@ var Index = React.createClass({
 
   render: function() {
     return (
-      <div>
-
-        <Box>
-          <Collection />
-        </Box>
-
-      </div>
+      <p>Please select a song on the left.</p>
     );
   }
 });

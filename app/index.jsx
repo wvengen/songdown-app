@@ -3,6 +3,10 @@
 var React = require('react');
 var Radium = require('radium');
 
+var Col = require('react-bootstrap/lib/Col');
+var Grid = require('react-bootstrap/lib/Grid');
+var Row = require('react-bootstrap/lib/Row');
+
 require('babel/polyfill');
 
 var ReactRouter = require('react-router');
@@ -13,8 +17,9 @@ var NotFoundRoute = ReactRouter.NotFoundRoute;
 
 var Edit = require('./components/edit');
 var Header = require('./components/header');
-var Index = require('./components/index');
+var Home = require('./components/home');
 var Song = require('./components/song');
+var SongIndex = require('./components/songIndex');
 
 var styles = require('./styles');
 
@@ -24,8 +29,16 @@ var App = Radium(React.createClass({
       <div style={styles.app}>
 
         <Header />
-        <RouteHandler />
-
+        <Grid fluid>
+          <Row>
+            <Col sm={3} md={2} style={styles.sidebar}>
+              <SongIndex />
+            </Col>
+            <Col sm={9} smOffset={3} md={10} mdOffset={2}>
+              <RouteHandler />
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
@@ -44,14 +57,14 @@ var NotFound = React.createClass({
 
 var routes = (
   <Route handler={App}>
-    <DefaultRoute handler={Index} />
+    <DefaultRoute handler={Home} />
     <NotFoundRoute handler={NotFound} />
 
     <Route name="editor" path="/edit" handler={Edit}>
-      <Route name="editSong" path="/edit/:artist/:name" handler={Edit} />
+      <Route name="editSong" path="/edit/:name" handler={Edit} />
     </Route>
 
-    <Route name="song" path="/song/:artist/:name" handler={Song} />
+    <Route name="song" path="/song/:name" handler={Song} />
   </Route>
 );
 

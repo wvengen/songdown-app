@@ -19,8 +19,8 @@ var Song = React.createClass({
   ],
 
   componentDidMount: function() {
-    if (this.props.params.artist && this.props.params.name) {
-      SongActions.load(this.props.params.artist, this.props.params.name);
+    if (this.props.params.name) {
+      SongActions.load(this.props.params.name);
     }
   },
 
@@ -51,6 +51,7 @@ var Song = React.createClass({
             useCacheForDOMMeasurements={true}
             onChange={this.handleChange}
             style={{
+              fontFamily: 'monospace',
               width: '100%',
               fontSize: 16
             }}

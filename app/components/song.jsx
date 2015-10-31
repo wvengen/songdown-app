@@ -35,9 +35,10 @@ var Song = React.createClass({
   ],
 
   componentDidMount: function() {
+    console.log('loading song', this.props.params);
     TransposeActions.reset();
     FontSizeActions.reset();
-    SongActions.load(this.props.params.artist, this.props.params.name);
+    SongActions.load(this.props.params.name);
     document.title = this.props.params.name;
   },
 

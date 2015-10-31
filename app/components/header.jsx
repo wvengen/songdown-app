@@ -3,9 +3,13 @@
 var React = require('react');
 var Radium = require('radium');
 var Reflux = require('reflux');
+var Router = require('react-router');
 var _ = require('lodash');
 
-var HeaderLink = require('./headerLink');
+var Nav = require('react-bootstrap/lib/Nav');
+var Navbar = require('react-bootstrap/lib/Navbar');
+var NavBrand = require('react-bootstrap/lib/NavBrand');
+var NavItemLink = require('react-router-bootstrap').NavItemLink;
 
 var styles = require('./../styles');
 
@@ -19,15 +23,18 @@ var Header = React.createClass({
   render: function() {
 
     var editHref = '/edit';
-    if (this.state.song.artist && this.state.song.name) {
-      editHref = '/edit/' + this.state.song.artist + '/' + this.state.song.name;
+    if (this.state.song.name) {
+      editHref = '/edit/' + this.state.song.name;
     }
 
     return (
-      <div style={styles.header}>
-        <HeaderLink href="/">Home</HeaderLink>
-        <HeaderLink href={editHref}>Edit</HeaderLink>
-      </div>
+      <Navbar inverse fixedTop style={styles.header} fluid>
+        <NavBrand><Router.Link to="/">Songdown+</Router.Link></NavBrand>
+        <Nav navbar right>
+          <NavItemLink to='/'>Home</NavItemLink>
+          <NavItemLink to={editHref}>Edit</NavItemLink>
+        </Nav>
+      </Navbar>
     );
   }
 });

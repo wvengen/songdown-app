@@ -22,11 +22,11 @@ var SongStore = Reflux.createStore({
     this.data = this.getInitialState();
   },
 
-  onLoad: function(artist, name) {
+  onLoad: function(name) {
     getData(function(data) {
-      if (data && data[artist] && data[artist][name]) {
-        this.data = data[artist][name];
-        this.trigger(data[artist][name]);
+      if (data && data[name]) {
+        this.data = data[name];
+        this.trigger(data[name]);
       } else {
         window.location.pathname = '/404';
       }

@@ -1,2 +1,4 @@
 *.js
 *.json
+bootstrap.*
+fonts/glyphicons-halflings-regular.*

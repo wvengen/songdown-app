@@ -2,13 +2,17 @@
 
 var React = require('react');
 var Reflux = require('reflux');
+var Router = require('react-router');
 var _ = require('lodash');
+
+var ListGroup = require('react-bootstrap/lib/ListGroup');
+var ListGroupItem = require('react-bootstrap/lib/ListGroupItem');
+var ListGroupItemLink = require('react-router-bootstrap').ListGroupItemLink;
+
 
 var CollectionActions = require('./../actions/collection');
 
 var CollectionStore = require('./../stores/collection');
-
-var Artist = require('./artist');
 
 var Collection = React.createClass({
   mixins: [
@@ -16,20 +20,20 @@ var Collection = React.createClass({
   ],
 
   componentDidMount: function() {
-    document.title = 'Songdown Collection';
+    document.title = 'Songs';
     CollectionActions.load();
   },
 
   render: function() {
     var arr = [];
 
-    _.each(this.state.collection, function(songs, name) {
+    _.each(this.state.collection, function(song) {
       arr.push(
-        <Artist key={name} name={name} songs={songs} />
+        <ListGroupItemLink key={song.name} to={'/song/' + song.name}>{song.name}</ListGroupItemLink>
       );
     });
 
-    return <div>{arr}</div>;
+    return <ListGroup>{arr}</ListGroup>;
   }
 });
 
